@@ -1,6 +1,16 @@
 # AIN-RAG: Artificial Intelligence Norms Retrieval-Augmented Generation System
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-Framework-FF4B4B?logo=streamlit&logoColor=white)
+![Pinecone](https://img.shields.io/badge/Pinecone-Vector_DB-0099CC?logo=pinboard&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-Framework-FFD700?logo=langchain&logoColor=black)
 
 AIN-RAG is a Retrieval-Augmented Generation (RAG) application designed to help users navigate AI regulatory frameworks. This system integrates Large Language Models (LLMs) with external knowledge sources to provide accurate, context-aware responses enriched with references to the original documents.
+
+---
+
+## Try the demo directly on streamlit cloud!
+
+Start [chatting](https://ain-rag.streamlit.app/) with the model to explore its functionalities!
 
 ---
 
@@ -37,12 +47,6 @@ AIN-RAG uses the following workflow, inspired by the [auto-evaluative-rag pipeli
 
 ---
 
-## Try the demo directly on streamlit cloud!
-
-Get an [openai API key](https://platform.openai.com/api-keys) and start trying the app!
-
----
-
 ## How to Replicate
 
 To replicate the functionality of AIN-RAG for your own domain:
@@ -53,7 +57,7 @@ To replicate the functionality of AIN-RAG for your own domain:
 2. **Database Setup:**
    - Create your own Pinecone index and configure it with appropriate dimensions to match your embeddings.
    - Change the embedding dimension in the `pinecone_embedding.py` and `utils.py` files accordingly.
-   - Replace the Pinecone index name and API key in the code `utils.py` with your own.
+   - Define the Pinecone index name and set the pinecone API key as an environment variable.
 
 3. **Integrate LLM:**
    - Connect an LLM (e.g., OpenAI's GPT-4o-mini) for query refinement and response generation.
@@ -74,8 +78,7 @@ To replicate the functionality of AIN-RAG for your own domain:
 
 - `GUI.py`: Main application script.
 - `utils.py`: Mostly langchain functions for query refinement, document retrieval, and response generation.
-- `pinecone_embedding.py`: Contains the function for populate the Pinecone index.
-- `actual_indexing.py`: Execute the pinecone indexing of the specified documents.
+- `pinecone_embedding.py`: Execute the pinecone indexing of the specified documents.
 - `prompts.yaml`: Contains all the prompts used for the different agents.
 - `markdown_links.json`: A JSON file mapping filenames to external links.
 - `requirements.txt`: Dependency list.
