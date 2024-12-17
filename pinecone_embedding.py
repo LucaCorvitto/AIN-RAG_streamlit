@@ -1,13 +1,12 @@
 import os
 import time
+import argparse
 from getpass import getpass
-from langchain_community.document_loaders import PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
-
-#os.environ['PINECONE_API_KEY'] = "pcsk_288X2e_M4zbjKrEAnunFUJcRYJ5twDDCTfhD1ybW8gsUSkKuZkfpPbGF3dn4WeQgjfAwx8"
 
 def populate_database(list_of_paths):
     
@@ -61,3 +60,14 @@ def populate_database(list_of_paths):
     vectorstore.add_documents(all_splits)  # Add document chunks to Pinecone vector store
 
     return
+
+def main():
+    parser = argparse.ArgumentParser(description='Run tests.')
+    parser.add_argument('-pdf', '--pdfs-paths-list', action="append", help="Insert the PDFs' paths, follow the same order as the file names")
+    args = parser.parse_args()
+    pdfs_paths_list = args.pdfs_paths_list
+
+    populate_database(pdfs_paths_list)
+
+if __name__ == "__main__":
+    main()
