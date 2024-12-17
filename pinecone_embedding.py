@@ -7,7 +7,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 
-os.environ['PINECONE_API_KEY'] = "pcsk_288X2e_M4zbjKrEAnunFUJcRYJ5twDDCTfhD1ybW8gsUSkKuZkfpPbGF3dn4WeQgjfAwx8"
+#os.environ['PINECONE_API_KEY'] = "pcsk_288X2e_M4zbjKrEAnunFUJcRYJ5twDDCTfhD1ybW8gsUSkKuZkfpPbGF3dn4WeQgjfAwx8"
 
 def populate_database(list_of_paths):
     

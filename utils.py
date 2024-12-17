@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.schema import BaseOutputParser
 
-os.environ['PINECONE_API_KEY'] = "pcsk_288X2e_M4zbjKrEAnunFUJcRYJ5twDDCTfhD1ybW8gsUSkKuZkfpPbGF3dn4WeQgjfAwx8"
+#os.environ['PINECONE_API_KEY'] = "pcsk_288X2e_M4zbjKrEAnunFUJcRYJ5twDDCTfhD1ybW8gsUSkKuZkfpPbGF3dn4WeQgjfAwx8"
 
 # Define the structured metrics model
 class Metrics(BaseModel):
