@@ -209,18 +209,18 @@ with st.sidebar: # elements in the sidebar
     database = st.sidebar.selectbox(
         'Select a country', ['EU', 'US', 'ALL'],
          key='database',
-         disabled=st.session_state.disabled,
+         #disabled=st.session_state.disabled,
         ).lower()
     
     st.html("<br>")
     
-    activate_chat = st.button(
-        "Click here to start chatting about the selected regulatory framework!", 
-        on_click=disable_selectbox,
-        disabled=st.session_state.disabled,
-        type="primary")
+    # activate_chat = st.button(
+    #     "Click here to start chatting about the selected regulatory framework!", 
+    #     on_click=disable_selectbox,
+    #     disabled=st.session_state.disabled,
+    #     type="primary")
     
-    st.divider()
+    # st.divider()
 
     st.button('Clear Chat History', 
               on_click=clear_chat_history)
@@ -230,10 +230,10 @@ with st.sidebar: # elements in the sidebar
 
 
 # User-provided prompt
-if not st.session_state.disabled:
-    prompt = st.chat_input("Select a country and confirm clicking the button below to start chatting.", disabled = True)
-else:
-    prompt = st.chat_input("Write your question about the AI norms here")
+# if not st.session_state.disabled:
+#     prompt = st.chat_input("Select a country and confirm clicking the button below to start chatting.", disabled = True)
+# else:
+prompt = st.chat_input("Write your question about the AI norms here")
 if prompt: #prompt is the user chat input
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
