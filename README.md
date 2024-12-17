@@ -57,7 +57,7 @@ To replicate the functionality of AIN-RAG for your own domain:
 2. **Database Setup:**
    - Create your own Pinecone index and configure it with appropriate dimensions to match your embeddings.
    - Change the embedding dimension in the `pinecone_embedding.py` and `utils.py` files accordingly.
-   - Replace the Pinecone index name and API key in the code `utils.py` with your own.
+   - Define the Pinecone index name and set the pinecone API key as an environment variable.
 
 3. **Integrate LLM:**
    - Connect an LLM (e.g., OpenAI's GPT-4o-mini) for query refinement and response generation.
