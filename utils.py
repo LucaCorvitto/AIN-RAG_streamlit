@@ -36,7 +36,14 @@ def initialization(database='eu'):
     ### Connect to Pinecone ###
     PINECONE_API_KEY = os.getenv("PINECONE_API_KEY") or getpass("Enter your Pinecone API key: ")
     pc = Pinecone(api_key=PINECONE_API_KEY)
-    index_name = "streamlit-rag" if database=="eu" else "streamlit-rag-us"
+
+    if database=="eu":
+        index_name = "streamlit-rag-eu" 
+    elif database=="us":
+        index_name = "streamlit-rag-us"
+    else:
+        index_name = "streamlit-rag"
+    
     index = pc.Index(index_name)
 
     ### Initialize the Pinecone Vector Store ###

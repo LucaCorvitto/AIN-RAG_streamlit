@@ -207,7 +207,7 @@ with st.sidebar: # elements in the sidebar
 
     # Adjustment of model parameters - choose the database
     database = st.sidebar.selectbox(
-        'Select a country', ['EU', 'US'],
+        'Select a country', ['EU', 'US', 'ALL'],
          key='database',
          disabled=st.session_state.disabled,
         ).lower()

@@ -21,7 +21,7 @@ def populate_database(list_of_paths):
 
     spec = ServerlessSpec(cloud="aws", region="us-east-1")
 
-    index_name = "streamlit-rag-us" # Choose a unique index name
+    index_name = "streamlit-rag-eu" # Choose a unique index name
     existing_indexes = [index_info["name"] for index_info in pc.list_indexes()]
 
     # Create index if it doesn't exist
