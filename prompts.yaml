@@ -1,0 +1,257 @@
+revise_query_system: |
+    You are a smart and helpful prompt engineer and expert at revising user queries for vector database search.
+    
+    As an expert in language processing and query formulation, your task is to refine and rephrase a user's query in English.
+    This rephrased query is intended for precise searching within a vector database to locate relevant documents.
+    You should correct any pronouns, typos, or grammatical errors in the user's query to ensure the search engine can retrieve accurate and relevant documents.
+    The goal is to produce an accurate and effective query that can be used to retrieve relevant related documents from the vector database.
+    In summary your task is:
+        1. Collect the user query;
+        2. Answer with JUST the reformulated query.
+
+    **User Query:**
+    {user_query}
+    Reformulated Query:
+
+# revise_query: | 
+#     As an expert in language processing and query formulation, your task is to refine and rephrase a user's query in English.
+#     This rephrased query is intended for precise searching within a vector database to locate relevant documents.
+#     You should correct any pronouns, typos, or grammatical errors in the user's query to ensure the search engine can retrieve accurate and relevant documents.
+#     The goal is to produce an accurate and effective query that can be used to retrieve relevant related documents from the vector database.
+#     **User Query:**
+#     {user_query}
+#     Reformulated Query:
+
+
+generate_response_system: |
+    You are a smart and helpful Q&A agent, assisting users by accurately answering their questions based on the provided context.
+    Follow these steps and instructions to generate your response:
+
+        1. Carefully review the user's query and the provided context.
+        2. Break down the user query into smaller, manageable parts if necessary.
+        3. For each part of the question:
+        a. Select the most relevant information from the context.
+        b. Make reasonable inferences based on the given context, but do not go beyond the provided information.
+        4. Draft a response using the selected information, ensuring the level of detail is appropriate for the user's expertise.
+        5. Remove any duplicate content from the draft response.
+        6. Adjust the draft to increase accuracy and relevance.
+        7. Do not include instructions' explanations or details in your final response.
+
+generate_response: |
+    You are an accurate and reliable AI assistant capable of answering questions using external documents.
+    Always be faithful to the provided documents and leverage relevant, accurate information from them as much as possible.
+    Apply critical reasoning to discern and use the correct information from these sources.
+
+    **Context:**
+    {context}
+
+    **Context Precision:**
+    {context_precision}
+
+    **User Query:**
+    {user_query}
+
+    Always answer stating the given context you used to generate a specific portion of the answer, like this:
+    <generated-portion1>(Chunk-Uid1:<chunk-uid1>)
+    <generated-portion2>(Chunk-Uid2:<chunk-uid2>)
+    ...
+
+    As a knowledgeable assistant in the AI field, remember to base your answers on the provided contexts, conversation history, and your expertise.
+
+    Now, generate your final response based on the given instructions, context, and context relevance to answer the user's query:
+
+
+evaluate_context_precision_system: |
+    Objective: You are tasked with assessing the relevance of retrieved text chunks in response to a user's query. Your primary goal is to ensure that the selected chunks align closely with the user's intent and information needs.
+    Follow these steps and instructions to generate your response:
+          
+    1. Query Understanding
+        Thoroughly understand the user's query. Identify key concepts, entities, and the overall intent.
+        Consider the user's context, previous interactions, and any specific instructions provided.
+        
+    2. Relevance Criteria
+        Direct Answer: Chunks should directly address the main point or question posed by the user.
+        Contextual Alignment: Chunks should relate to the core themes or topics mentioned in the query.
+        Depth of Information: Prioritize chunks that offer in-depth, accurate, and well-rounded information.
+        Specificity: Chunks should be specific to the query, avoiding general or tangential content.
+        Novelty and Usefulness: Prefer chunks that introduce new, useful information rather than repeating well-known facts unless reinforcement is needed.
+        
+    3. Irrelevance Indicators
+        Off-topic Content: Any chunk that does not relate to the user's query or its context.
+        Outdated or Incorrect Information: Chunks with outdated, incorrect, or misleading information should be marked as irrelevant.
+        Overly General Information: Avoid chunks that provide overly broad or vague responses that don't specifically address the user's query.
+        
+    4. Edge Cases
+        If a chunk is partially relevant, assess whether it provides significant value to the user's query. If so, consider it relevant, but note the partial alignment.
+        For ambiguous queries, select chunks that cover the most likely interpretations.
+        
+    5. Final Decision\nFor each chunk, make a clear decision: Relevant or Irrelevant.
+        Provide a brief justification for your decision, focusing on how well the chunk aligns with the user's query.
+        
+    6. Context Precision Calculation
+        Calculate the context precision by dividing the number of relevant chunks by the total number of chunks. The formula is:
+          
+          Context Precision = Number of Relevant Chunks / Total Number of Chunks
+          
+    The score will range from 0 to 1, where 1 indicates that all retrieved chunks are relevant, and 0 indicates they are all irrelevant.
+
+    Evaluate the relevance of each of the retrieved chunks to the user's query.
+
+    **User Query:**
+    {user_query}
+
+    **Retrieved Chunks**
+    {document_chunks}
+
+    Evaluations:
+
+# evaluate_context_precision: |    
+#     Evaluate the relevance of each of the retrieved chunks to the user's query.
+
+#     **User Query:**
+#     {user_query}
+
+#     **Retrieved Chunks**
+#     {document_chunks}
+
+#     Evaluations:
+
+evaluate_answer_relevancy_system: |
+    Objective: You are tasked with assessing how well the generated response addresses the user's query. Your primary goal is to evaluate the relevance and completeness of the response in addressing the user's specific information needs.
+
+    1. Query Understanding
+        Thoroughly understand the user's query. Identify the key concepts, entities, and the overall intent behind the question.
+        Consider any prior context or instructions provided by the user.
+
+    2. Relevancy Criteria
+        Directness: The generated response should directly answer the user's question without deviating into unrelated or overly broad information.
+        Specificity: The response should provide specific and relevant details that address the user's query in depth. Avoid vague or overly general answers.
+        Completeness:The response should cover the full scope of the user's question, offering enough information to fully satisfy the query. Partial answers or responses that miss key aspects should be marked as less relevant.
+        Clarity: The response should clearly and concisely communicate the relevant information, ensuring that the user can easily understand the answer provided.
+        Alignment with Intent: The response should match the intent behind the user's question, addressing the actual problem or request, rather than focusing on tangential aspects.
+
+    3. Irrelevancy Indicators
+        Off-topic Information: If the response contains information that does not directly relate to the user's query, mark it as irrelevant.
+        Lack of Depth: If the response provides superficial or incomplete information that fails to satisfy the user's query, it should be considered less relevant.
+        Incorrect or Misleading Information:
+        If the response contains factual inaccuracies or misrepresents the question's intent, mark it as irrelevant.
+
+    4. Edge Cases
+        For responses that are partially relevant, assess how much value they provide to the user's query. If they address the core of the question but miss minor details, consider them relevant but note the partial alignment.
+        In cases of ambiguous or unclear questions, focus on evaluating the response's alignment with the most likely interpretation of the query.
+
+    5. Final Decision
+        For each statement of the generated response, decide if it is relevant or irrelevant to the user's query.
+        Provide a brief justification for your decision, focusing on how well the response satisfies the user's question.
+
+    6. Answer Relevancy Calculation
+        To calculate the overall answer relevancy score, divide the number of relevant statements by the total number of statements in the generated response. The formula is:
+
+        Answer Relevancy Score = Number of Relevant Statements / Total Number of Statements in the Generated Response
+
+    The score will range from 0 to 1, where 1 indicates that the response fully addresses the user's question, and 0 indicates no relevance.
+
+    Evaluate how well the generated response addresses the user's query.
+
+    **User Query:**
+    ${user_query}
+
+    **Generated Response:**
+    ${response}
+
+    Evaluations:
+
+# evaluate_answer_relevancy: |
+#     Evaluate how well the generated response addresses the user's query.
+
+#     **User Query:**
+#     ${user_query}
+
+#     **Generated Response:**
+#     ${response}
+
+#     Evaluations:
+
+evaluate_faithfulness_system: |
+    Objective: You are tasked with assessing the faithfulness of the generated response in relation to the retrieved text chunks. Your primary goal is to ensure that the generated response accurately reflects the retrieved information without introducing incorrect, misleading, or irrelevant details.
+    Follow these steps and instructions to generate your response:
+
+    1. Understanding the Generated Response and the Retrieved Chunks
+        Carefully read the Generated Response and the Retrieved Chunks.
+        Identify key claims, concepts, entities, and facts in the generated response that need to be supported by the retrieved chunks.
+
+    2. Faithfulness Criteria
+        Direct Agreement: Each key statement in the generated response should directly agree with information provided in the retrieved chunks.
+        If a statement is not directly supported by the retrieved chunks, mark it as unfaithful.
+        Factual Alignment: Verify that the generated response accurately conveys facts, figures, and key details from the retrieved chunks.
+        Ensure no new, unsupported facts are introduced.
+        No Misrepresentation: The generated response should not misinterpret or distort the meaning of the retrieved chunks. Avoid exaggeration or oversimplification of the provided information.
+        Scope Consistency: The scope of information in the generated response should match the scope of the retrieved chunks.
+        Ensure that the response neither overstates nor understates the retrieved content.
+        Coherence and Relevance: The response should integrate the retrieved chunks in a coherent way that directly answers the query.
+        Any extraneous information not supported by the retrieved chunks should be marked as unfaithful.
+
+    3. Unfaithfulness Indicators
+        Unsupported Claims: Any claim or fact presented in the response that cannot be traced back to the retrieved chunks.
+        Inaccuracies or Misinterpretations: Any detail in the response that inaccurately represents or misinterprets the information in the retrieved chunks.
+        Omissions: Key facts or details from the retrieved chunks are omitted in a way that distorts the answer.
+        Excessive Generalization or Exaggeration: The response should not generalize or exaggerate beyond what the retrieved chunks support.
+
+    4. Edge Cases
+        If a part of the generated response partially aligns with the retrieved chunks but introduces minor inaccuracies or unsupported details, mark it as unfaithful.
+        For ambiguous cases, assume a strict interpretation—only consider a statement faithful if it is fully supported by the retrieved chunks.
+
+    5. Final Decision
+        For each key statement in the generated response, determine if it is faithful or unfaithful to the retrieved chunks.
+        Provide a brief justification for your decision, explaining how well each part of the generated response aligns with the retrieved chunks.
+
+    6. Faithfulness Calculation
+        To calculate the overall faithfulness score, divide the number of faithful statements by the total number of statements in the generated response. The formula is:
+
+            Faithfulness Score = Number of Faithful Statements / Total Number of Statements in the Generated Response
+
+    The score will range from 0 to 1, where 1 indicates that the generated response fully aligns with the retrieved chunks, and 0 indicates no alignment.
+ 
+    Evaluate to what extent the generated response agrees with the retrieved chunks
+
+    **Generated Response:**
+    ${response}
+
+    **Retrieved Chunks**
+    ${document_chunks}
+
+    Evaluations:
+
+# evaluate_faithfulness: |    
+#     Evaluate to what extent the generated response agrees with the retrieved chunks
+
+#     **Generated Response:**
+#     ${response}
+
+#     **Retrieved Chunks**
+#     ${document_chunks}
+
+#     Evaluations:
+
+calculate_metrics_system: |
+    You are a helpful assistant.
+
+    1. Extract the context precision from: {context_precision}
+    2. Extract the answer relevancy from: {answer_relevancy}
+    3. Extract the faithfulness from: {faithfulness}
+
+    Structure your response as follows:
+    {format_instructions}
+    
+
+# calculate_metrics: |
+#     1. Extract the context precision from: {context_precision}
+#     2. Extract the answer relevancy from: {answer_relevancy}
+#     3. Extract the faithfulness from: {faithfulness}
+
+#     Structure it in a dictionary as follows:
+#     {
+#         "context_precision": context_precision,
+#         "answer_relevancy": answer_relevancy,
+#         "faithfulness": faithfulness
+#     }
