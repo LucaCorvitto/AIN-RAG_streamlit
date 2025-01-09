@@ -44,8 +44,9 @@ def replace_chunk_uid_with_hyperlink(match):
     # Return linkable text
     return f'<a href="#chunk-uid:{chunk_uid}">{match.group(0)}</a>'
 
-def generate_clickable_link(filename):
-    link = markdown_links.get(filename)
+def generate_clickable_link(filepath):
+    filename = os.path.basename(filepath)
+    link = markdown_links.get(filepath)
     if link:
         return f'<a href="{link}" target="_blank">{filename}</a>'
     return filename  # Return the filename if no link is found
