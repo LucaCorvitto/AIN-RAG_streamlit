@@ -7,10 +7,51 @@
 AIN-RAG is a Retrieval-Augmented Generation (RAG) application designed to help users navigate AI regulatory frameworks. This system integrates Large Language Models (LLMs) with external knowledge sources to provide accurate, context-aware responses enriched with references to the original documents.
 
 ---
+## Watch what the app can do with this short demo!
+Here it is a short demo showing what are the main features of the app:
 
-## Try the demo directly on streamlit cloud!
+https://github.com/user-attachments/assets/f5b8365c-a6ce-4670-a4a6-d4b491078c07
 
-Start [chatting](https://ain-rag.streamlit.app/) with the model to explore its functionalities!
+<sub><sup>The video has been edited and sped up by 2.5x for demonstration purposes.</sup></sub>
+
+You can:
+* ask whatever you like! It will be the model to check if your question is in context and if it will be able to answer based on its informations;
+* ask practical questions about the sources, since they are about AI norms you could ask if your model, describing its functionalities, it's compliant with the regulatory framework or not;
+* check the evaluation of the answer given by three different LLMs, each assigning a metric to the query-response exchange.
+* check the original documents cited in the answer if you want to be 100% sure about it, you can help yourself finding the cited passages by copying the chunks and searching for them in the original document, as shown below;
+![AIN-RAG_gif_chunks](https://github.com/user-attachments/assets/7c15b167-9c47-4682-b2a2-b168548f6dab)
+
+Now, let's see what the metrics evaluate in details:
+### Answer Relevancy
+This metric assesses how well the generated response addresses the user's query. The primary goal of the designated LLM agent is to evaluate the relevance and completeness of the response in addressing the user's specific information needs. It will give the evaluation expanding this key points:
+* Query Understanding
+* Relevancy Criteria
+* Irrelevancy Indicators
+* Edge Cases
+
+It will then give its final decision and show the final formula computation and its value.
+
+### Context Precision
+This metric assesses the relevance of retrieved text chunks in response to a user's query. The primary goal of this agent is to ensure that the selected chunks align closely with the user's intent and information needs. In summary, this metric check if the question of the user is in context and evaluates how well the model retrieved information relevant to the said question.
+The evaluation follow the same steps as the previous metric.
+
+### Faithfulness
+This metric assesses the faithfulness of the generated response in relation to the retrieved text chunks. The primary goal of this agent is to ensure that the generated response accurately reflects the retrieved information without introducing incorrect, misleading, or irrelevant details. The LLM has to understand the key claims and concepts of both the generated response and the retrieved chunks and then evaluating them based on the following criteria:
+* Direct Agreement
+* Factual Alignment
+* Misrepresentation
+* Scope Consistency
+* Coherence and Relevance
+* Unsupported Claims
+* Omissions
+
+All the metrics are computed and shown together in the bar-graph.
+
+---
+
+## Try the app directly on streamlit cloud!
+
+Start [chatting](https://ain-rag.streamlit.app/) with the model to explore its features yourself!
 
 ---
 
