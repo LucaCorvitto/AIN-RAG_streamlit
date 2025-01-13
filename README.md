@@ -17,8 +17,10 @@ https://github.com/user-attachments/assets/f5b8365c-a6ce-4670-a4a6-d4b491078c07
 You can:
 * ask whatever you like! It will be the model to check if your question is in context and if it will be able to answer based on its informations;
 * ask practical questions about the sources, since they are about AI norms you could ask if your model, describing its functionalities, it's compliant with the regulatory framework or not;
+* select the region whose regulatory frameworks you prefer to explore during the chat. You can choose between Europe, the USA, or both.
 * check the evaluation of the answer given by three different LLMs, each assigning a metric to the query-response exchange.
 * check the original documents cited in the answer if you want to be 100% sure about it, you can help yourself finding the cited passages by copying the chunks and searching for them in the original document, as shown below;
+
 ![AIN-RAG_gif_chunks](https://github.com/user-attachments/assets/7c15b167-9c47-4682-b2a2-b168548f6dab)
 
 Now, let's see what the metrics evaluate in details:
